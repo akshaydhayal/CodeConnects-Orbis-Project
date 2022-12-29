@@ -61,6 +61,12 @@ export default function Navbar({orbis}){
               </Link>
             </button>
           )}
+          <button className='connect-btn' onClick={async()=>{
+            let res = await orbis.logout();
+            if(res.status==200){
+              setUser(null);
+            }
+            }}>LogOut</button>
           {/* <Button
             onClick={() => {
               console.log("MUI Clicked");
