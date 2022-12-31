@@ -23,25 +23,38 @@ export default function Navbar({orbis}){
       setUser(res.details);
       setWalletStatus('Connected');
     }
-    console.log("Result from orbis.connect : ", res);
+    console.log("Result from orbis.connect in NAVBAR : ", res);
     let res1 = await orbis.isConnected();
     console.log("`isConnected` result : ", res1);
   }
 
-  async function checkIsObisConnected() {
+  async function checkIsOrbisConnected() {
+    
     let res = await orbis.isConnected();
     console.log(res);
     if (res.status == 200){
+       localStorage.setItem("userDid", res.did);
+       setTimeout(() =>{
+           console.log(
+             "user did from localStorage : ",
+             localStorage.getItem("userDid")
+           );
+       },2000);
       setUser(res.details);
       setWalletStatus('Connected');
     }
+    console.log("Result from orbis.connect in NAVBAR user : ", user);
   }
 
   useEffect(() => {
-    checkIsObisConnected();
+    checkIsOrbisConnected();
   }, []);
+          
+          
+
     return (
       <div className="navbar-container">
+        {/* {checkIsOrbisConnected()} */}
         <div className="logo-image">
           <img src="./assets/logo3.png" height={70} width={230} />
         </div>
@@ -49,24 +62,27 @@ export default function Navbar({orbis}){
           <Link className="link" to="/">
             Home
           </Link>
-          <Link className="link" to="/about">
-            About
+          <Link className="link" to="/profile">
+            Profile
           </Link>
           {user ? (
             <button className="connect-btn">Wallet Connected</button>
           ) : (
             <button className="connect-btn" onClick={() => connectToOrbis()}>
-              <Link className="connect-btn" to="/connect">
-                Connect Wallet
-              </Link>
+              Connect Wallet
             </button>
           )}
-          <button className='connect-btn' onClick={async()=>{
-            let res = await orbis.logout();
-            if(res.status==200){
-              setUser(null);
-            }
-            }}>LogOut</button>
+          <button
+            className="connect-btn"
+            onClick={async () => {
+              let res = await orbis.logout();
+              if (res.status == 200) {
+                setUser(null);
+              }
+            }}
+          >
+            LogOut
+          </button>
           {/* <Button
             onClick={() => {
               console.log("MUI Clicked");

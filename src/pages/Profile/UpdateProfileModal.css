@@ -1,0 +1,79 @@
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.modal.enter-done {
+  opacity: 1;
+  pointer-events: visible;
+}
+
+.modal.exit {
+  opacity: 0;
+}
+
+.modal-content {
+  width: 700px;
+  height: 310px;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-200px);
+}
+
+.modal.enter-done .modal-content {
+  transform: translateY(0);
+}
+
+.modal.exit .modal-content {
+  transform: translateY(-200px);
+}
+
+.modal-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 230px;
+    padding-right:20px;
+
+}
+.modal-footer {
+  padding: 10px;
+  margin-left: 20px;
+}
+
+.modal-title {
+  margin-left: 0;
+}
+
+.modal-body {
+  padding: 10px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.form-inputs{
+    display:flex;
+    flex-direction: column;
+    margin:8px 15px;
+    /* border: 2px solid green; */
+
+}
+#outlined-basic{
+    margin-bottom: 5px;
+}
+.update-btn{
+    margin-left:60px;
+}
+Button{
+   margin-left:60px; 
+}
